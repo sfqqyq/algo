@@ -1,4 +1,4 @@
-package com.itsqq.util;
+package com.itsqq.list;
 
 import com.itsqq.domain.Node;
 
