@@ -1,5 +1,6 @@
 package com.itsqq.stack;
 
+
 /**
  * 使用数组实现栈
  *
@@ -11,11 +12,10 @@ public class ArrayStack {
 
     private String[] items; // 数组
     private int count; //栈的元素个数
-    private int n;  //栈的大小
+    private int n=3;  //栈的大小
 
-    public ArrayStack(int n){
-        items=new String[n];
-        this.n=n;
+    public ArrayStack(){
+        items=new String[this.n];
         this.count=0;
     }
 
@@ -23,15 +23,13 @@ public class ArrayStack {
      * 入栈
      * @param value 入栈的值
      */
-    public boolean push(String value){
+    public void push(String value){
         if(count >= n){
-            // 返回false，入栈失败
-            return false;
+            // 数组扩容
+            this.dilatation();
         }
         items[count]=value;
         count++;
-        // 返回true，入栈成功
-        return true;
     }
 
     /**
@@ -45,6 +43,17 @@ public class ArrayStack {
         String item = items[count-1];
         count--;
         return item;
+    }
+
+    /**
+     * 扩容数组
+     */
+    private void dilatation(){
+        // 扩充2倍
+        this.n=this.n*2;
+        String[] item = new String[this.n];
+        System.arraycopy(this.items, 0, item, 0, this.items.length);
+        this.items=item;
     }
 
     /**

@@ -37,4 +37,10 @@ public class myLinkedListTest {
         LinkedList<Object> linkedList = new LinkedList<>();
     }
 
+    @Test
+    public void test3(){
+        MyList<Integer> list = new MyList<>();
+        list.add(123);
+    }
+
 }
