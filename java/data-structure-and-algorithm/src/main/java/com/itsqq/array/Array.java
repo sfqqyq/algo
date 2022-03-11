@@ -21,29 +21,31 @@ public class Array {
         this.n = capacity;
         this.count = 0;
     }
+
     // 在指定的位置插入数据
     public boolean insert(int index, int value) {
-        if(index < 0 || index > count){
+        if (index < 0 || index > count) {
             System.out.println("下标异常");
             return false;
         }
 
-        if(count >= n){
+        if (count >= n) {
             System.out.println("数组已满");
             return false;
         }
 
-        for(int i=count;i > index;i--){
-            data[i]=data[i-1];
+        for (int i = count; i > index; i--) {
+            data[i] = data[i - 1];
         }
-        this.data[index]=value;
+        this.data[index] = value;
         ++count;
         return true;
     }
+
     // 在指定的位置插入数据
     public boolean add(int value) {
-        if(count >= n) return false;
-        data[count]=value;
+        if (count >= n) return false;
+        data[count] = value;
         ++count;
         return true;
     }
@@ -76,7 +78,7 @@ public class Array {
     public void printAll() {
         if (count <= 0) return;
         for (int i = 0; i < count; i++) {
-            System.out.print(data[i]+",");
+            System.out.print(data[i] + ",");
         }
     }
 
@@ -88,7 +90,7 @@ public class Array {
 //        array.insert(2,8);
 //        array.delete(1);
         int i = array.find(2);
-        System.out.println("查到的数据"+i);
+        System.out.println("查到的数据" + i);
         array.printAll();
     }
 }
