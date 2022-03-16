@@ -102,19 +102,26 @@ public class SinglyLinkedList {
     }
     // 删除指定节点
     public void deleteByNode(Node p){
+        if(p==null || this.node==null) return;
+
         Node n=this.node;
         // 查询上一个节点
-        while (n.next!=p){
+        while (n!=null && n.next != p){
             n=n.next;
         }
+        // 如果没有匹配到
+        if(n==null)return;
         n.next=n.next.next;
     }
     // 删除指点数据节点
     public void deleteByValue(int value){
+        if(this.node==null)return;
         Node n=this.node;
-        while (n.next.data!=value){
+        // 查找上一个节点
+        while (n.next!=null && n.next.data!=value){
             n=n.next;
         }
+        if(n.next==null)return;
         n.next=n.next.next;
     }
     // 打印节点数据
@@ -142,7 +149,71 @@ public class SinglyLinkedList {
         }
     }
 
+
+    // 判断是不是回文
+    public boolean palindrome(){
+        if(this.node == null)return false;
+
+        System.out.println("开始寻找中间节点---利用快慢指针");
+        Node slowN=this.node;
+        Node fastN=this.node;
+        if(slowN.next==null){
+            System.out.println("只有一个元素");
+            return true;
+        }
+        // 快指针单数节点，最后一个fastN.next==null,双数节点fastN.next.next==null
+        while (fastN.next!=null && fastN.next.next!=null){
+            slowN=slowN.next;
+            fastN=fastN.next.next;
+        }
+        //打印中间节点的数据
+        System.out.println("中间节点："+slowN.data);
+
+        Node leftLink=this.node; // 左边的链表
+        Node rightLink= inverseLinkList(slowN.next); // 右边的链表
+
+        // 遍历
+        while (leftLink!=null&&rightLink!=null){
+            if(leftLink.data != rightLink.data){
+                return false;
+            }
+            leftLink=leftLink.next;
+            rightLink=rightLink.next;
+        }
+        return true;
+    }
+
+    //带结点的链表翻转（不带头结点）
+    public Node inverseLinkList(Node H){
+        if(H==null || H.next==null){
+            return H;
+        }
+        Node p=H;
+        Node newH=null;
+        while (p!=null){
+            Node tmpN=p.next;// 存储p后面的节点
+            p.next=newH; // p节点指向前一个空间
+            newH=p; // 新链表的头移动到p,扩长一步链表
+            p=tmpN;//p指向原始链表p的下一个空间
+        }
+        return newH;
+    }
+
+
+    // 测试回文
     public static void main(String[] args) {
+        SinglyLinkedList list = new SinglyLinkedList(10);
+        list.insertTail(11);
+        list.insertTail(11);
+        list.insertTail(10);
+//        list.insertTail(11);
+        list.printAll();
+        boolean b = list.palindrome();
+        System.out.println("是否是回文："+b);
+    }
+
+    // 测试增删查
+    public static void main1(String[] args) {
         // 初始化数据
         SinglyLinkedList list = new SinglyLinkedList(10);
         list.insertTail(11);
@@ -157,6 +228,9 @@ public class SinglyLinkedList {
         System.out.println(node.data);
         // 在头部插入节点
         list.insertToHead(9);
+        list.printAll();
+        // 删除最后一个元素
+        list.deleteByNode(list.findByValue(13));
         list.printAll();
     }
 
