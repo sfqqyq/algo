@@ -199,17 +199,85 @@ public class SinglyLinkedList {
         return newH;
     }
 
+    // 实现两个有序链表合并成一个有序链表 从大到小
+    public Node mergeNodes(Node n1,Node n2){
+        Node newN=null;
+        Node tmpN1=n1;
+        Node tmpN2=n2;
+
+        while (true){
+            if(tmpN1==null){
+                for (;;){
+                    if(tmpN2==null) return inverseLinkList(newN);
+                    Node tmpN=tmpN2.next;
+                    tmpN2.next=newN;
+                    newN=tmpN2;
+                    tmpN2=tmpN;
+                }
+
+            }else if(tmpN2==null){
+                for (;;){
+                    if(tmpN1==null) return inverseLinkList(newN);
+                    Node tmpN=tmpN1.next;
+                    tmpN1.next=newN;
+                    newN=tmpN1;
+                    tmpN1=tmpN;
+                }
+            }
+
+            if(tmpN1.data > tmpN2.data){
+                Node tmpN=tmpN1.next;
+                tmpN1.next=newN;
+                newN=tmpN1;
+                tmpN1=tmpN;
+            }else if(tmpN1.data<tmpN2.data){
+                Node tmpN=tmpN2.next;
+                tmpN2.next=newN;
+                newN=tmpN2;
+                tmpN2=tmpN;
+            }else {
+                Node tmpN=tmpN1.next;
+                tmpN1.next=newN;
+                newN=tmpN1;
+                tmpN1=tmpN;
+                tmpN=tmpN2.next;
+                tmpN2.next=newN;
+                newN=tmpN2;
+                tmpN2=tmpN;
+            }
+        }
+
+
+
+    }
+
 
     // 测试回文
     public static void main(String[] args) {
-        SinglyLinkedList list = new SinglyLinkedList(10);
-        list.insertTail(11);
-        list.insertTail(11);
-        list.insertTail(10);
+//        SinglyLinkedList list = new SinglyLinkedList(10);
 //        list.insertTail(11);
-        list.printAll();
-        boolean b = list.palindrome();
-        System.out.println("是否是回文："+b);
+//        list.insertTail(11);
+//        list.insertTail(10);
+////        list.insertTail(11);
+//        list.printAll();
+//        boolean b = list.palindrome();
+//        System.out.println("是否是回文："+b);
+
+        SinglyLinkedList list1 = new SinglyLinkedList(6);
+        list1.insertTail(4);
+        list1.insertTail(2);
+        SinglyLinkedList list2 = new SinglyLinkedList(5);
+        list2.insertTail(3);
+        list2.insertTail(1);
+
+        Node node = list1.mergeNodes(list1.node, list2.node);
+        while (node.next!=null){
+            System.out.print(node.data+",");
+            node=node.next;
+        }
+        System.out.println(node.data);
+
+
     }
 
     // 测试增删查
