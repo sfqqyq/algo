@@ -263,6 +263,7 @@ public class SinglyLinkedList {
 //        boolean b = list.palindrome();
 //        System.out.println("是否是回文："+b);
 
+        // 测试链表合并
         SinglyLinkedList list1 = new SinglyLinkedList(6);
         list1.insertTail(4);
         list1.insertTail(2);
