@@ -87,6 +87,16 @@ public class LRUBaseLinkedList<T> {
         return true;
     }
 
+    // 打印所有的数据
+    public void printAll(){
+        if(this.head==null)return;
+        SNode<T> sNode=this.head;
+        while (sNode.next!=null){
+            System.out.print(sNode.data+",");
+            sNode=sNode.next;
+        }
+        System.out.print(sNode.data);
+    }
     // 获取链表中元素个数
     public int getLength(){
         if(head==null)return 0;
@@ -97,6 +107,27 @@ public class LRUBaseLinkedList<T> {
             tmpSN=tmpSN.next;
         }
         return sum;
+    }
+
+    public static void main(String[] args) {
+        LRUBaseLinkedList<Integer> list = new LRUBaseLinkedList<>();
+        // 测试新增功能
+//        list.addData(10);
+//        list.addData(11);
+//        list.addData(12);
+//        list.addData(13);
+//        list.addData(14);
+//        list.addData(15);
+//        list.printAll();
+        // 测试缓存功能
+        list.addData(10);
+        list.addData(11);
+        list.addData(12);
+        list.addData(13);
+        list.addData(14);
+        list.addData(12);
+        list.addData(10);
+        list.printAll();
     }
 
 }
