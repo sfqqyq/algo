@@ -7,7 +7,7 @@ package com.itsqq.stack;
  */
 public class LinkedListStack<T> {
 
-    private Node<T> items; // 数组
+    private Node<T> items;
 
     // 初始化
     public LinkedListStack() {}
@@ -16,34 +16,48 @@ public class LinkedListStack<T> {
     }
     // 入栈操作
     public boolean push(T item) {
-        if(this.items==null){
-            this.items=new Node<>(item,null);
-            return true;
-        }
-        Node<T> tmpN=this.items;
-        while (tmpN.next!=null){
-            tmpN=tmpN.next;
-        }
-        tmpN.next=new Node<>(item,null);
+        // 将节点放在链尾
+//        if(this.items==null){
+//            this.items=new Node<>(item,null);
+//            return true;
+//        }
+//        Node<T> tmpN=this.items;
+//        while (tmpN.next!=null){
+//            tmpN=tmpN.next;
+//        }
+//        tmpN.next=new Node<>(item,null);
+
+        // 将结点放在链头
+        Node<T> node=new Node<>(item,null);
+        node.next=this.items;
+        this.items=node;
         return true;
     }
     // 出栈操作
     public T pop() {
-        if(items==null)return null;
-        // 只有一个元素
-        if(items.next==null){
-            T data=items.data;
-            items=null;
-            return data;
-        }
-        Node<T> tmpN=this.items;
-        Node<T> node=tmpN;
-        while (tmpN.next!=null){
-            node=tmpN;
-            tmpN=tmpN.next;
-        }
-        T data = tmpN.data;
-        node.next=null;
+
+        // 出链尾的结点
+//        if(items==null)return null;
+//        // 只有一个元素
+//        if(items.next==null){
+//            T data=items.data;
+//            items=null;
+//            return data;
+//        }
+//        Node<T> tmpN=this.items;
+//        Node<T> node=tmpN;
+//        while (tmpN.next!=null){
+//            node=tmpN;
+//            tmpN=tmpN.next;
+//        }
+//        T data = tmpN.data;
+//        node.next=null;
+        if(this.items==null) return null;
+
+        // 出链头的数据
+        T data=this.items.data;
+        this.items=this.items.next;
+
         return data;
     }
     // 获取栈元素
