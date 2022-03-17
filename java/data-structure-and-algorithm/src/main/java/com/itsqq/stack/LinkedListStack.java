@@ -12,7 +12,7 @@ public class LinkedListStack<T> {
     // 初始化
     public LinkedListStack() {}
     public LinkedListStack(T item) {
-        this.items=new Node<>(item,null);
+        this.push(item);
     }
     // 入栈操作
     public boolean push(T item) {
