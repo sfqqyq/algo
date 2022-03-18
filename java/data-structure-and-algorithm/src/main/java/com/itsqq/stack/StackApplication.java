@@ -124,7 +124,6 @@ public class StackApplication {
     }
 
 
-
     public static void main(String[] args) {
         StackApplication stackApplication = new StackApplication();
 //        List<String> list = stackApplication.splitFormula("31+51x8-6");
@@ -132,7 +131,7 @@ public class StackApplication {
 //            System.out.print(str+",");
 //        }
 //        System.out.println(list);
-        int value = stackApplication.formulaCalculation("3x5/2");
+        int value = stackApplication.formulaCalculation("12/3+8x2+3");
         System.out.println(value);
     }
 }
