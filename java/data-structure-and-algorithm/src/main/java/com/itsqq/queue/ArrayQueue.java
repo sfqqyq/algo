@@ -25,31 +25,24 @@ public class ArrayQueue<T> {
     // 入栈
     public boolean enqueue(T item){
 //        if(this.head>this.tail)return false;
-        if(tail>=n){ //队列满了
+        if(tail>=n){ // 数据搬移
             // TODO 需要扩容或阻塞或拒绝
-
-//            expansion(); // 扩容
-//            try {
-//                Thread.currentThread().wait(); // 阻塞
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-            throw new RuntimeException("队列空间已经满。。。"); // 拒绝
+            dataMovement(); // 数据搬移
         }
         this.items[tail++]=item;
         return true;
     }
 
-    private void expansion() {
-
+    private void dataMovement() {
         // 数组满了，
         if((tail-head)>=n){
-            this.n=n*2;
-            T[] tmpArr=(T[])new Object[this.n*2];
-            for (int i=0;i<tail;i++){
-                tmpArr[i]=this.items[i];
-            }
-            this.items=tmpArr;
+//            this.n=n*2;
+//            T[] tmpArr=(T[])new Object[this.n*2];
+//            for (int i=0;i<tail;i++){
+//                tmpArr[i]=this.items[i];
+//            }
+//            this.items=tmpArr;
+            throw new RuntimeException("队列满了。。。");
         }else {
             for (int i = 0,j=head; j < tail; i++,j++) {
                 this.items[i]=this.items[j];
