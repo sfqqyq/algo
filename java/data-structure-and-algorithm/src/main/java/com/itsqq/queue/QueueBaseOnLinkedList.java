@@ -19,11 +19,11 @@ public class QueueBaseOnLinkedList<T> {
     // 入队
     public boolean enqueue(T data){
        if(tail==null){
-           tail=new Node(data,null);
+           tail=new Node<>(data,null);
            head=tail;
            return true;
        }
-       tail.next=new Node(data,null);
+       tail.next=new Node<>(data,null);
        tail=tail.next;
        return true;
     }
