@@ -16,6 +16,8 @@ public class StackApplication {
     // 算式计算
     public int formulaCalculation(/*算式字符串*/String formula){
 
+        new Thread();
+
         LinkedListStack<String> numberStack = new LinkedListStack<>();
         LinkedListStack<String> symbolStack = new LinkedListStack<>();
 
