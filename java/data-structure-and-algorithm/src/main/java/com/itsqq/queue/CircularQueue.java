@@ -28,10 +28,8 @@ public class CircularQueue {
         if((tail+1)%n==head){// 满了
             return false;
         }
-        items[tail++]=data;
-        if(tail>=n){
-            tail=0;
-        }
+        items[tail]=data;
+        tail=(tail+1)%n;
         return true;
     }
 
@@ -41,8 +39,8 @@ public class CircularQueue {
         if(this.items==null || head==tail){
             return -1;
         }
-        int item = items[head++];
-        head = head>=n ? 0 : head;
+        int item = items[head];
+        head = (head+1) % n;
         return item;
     }
     // 打印所有数据
@@ -50,19 +48,11 @@ public class CircularQueue {
         if(this.items==null || head==tail){
             return;
         }
-        int i;
-        for (i=head; i<n && i!=tail ;i++){
+        // 环形遍历
+        for (int i=head; i%n != tail ;i=(i+1)%n){
             System.out.print(items[i]+",");
         }
-        if(i==n){
-            for (int j=0;j<=tail;j++){
-                System.out.print(items[j]+",");
-            }
-        }
         System.out.println();
-//        else {
-//            System.out.println(items[tail]);
-//        }
     }
 
     public static void main(String[] args) {
