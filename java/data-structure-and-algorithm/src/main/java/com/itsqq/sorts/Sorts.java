@@ -93,17 +93,17 @@ public class Sorts {
         }
     }
 
-    // 选择排序
+    // 选择排序 最好，最坏，平均时间复杂度都是O(n^2)
+    // 是原地排序算法
+    // 不是稳定的排序算法
     public static void selectionSorts(int[] items){
         int n=items.length;
         if (n<=1)return;
 
         for (int i = 0; i < n-1; i++) {
-            int min=items[i];
             int minIndex=i;
             for (int j = i+1; j <n; j++) {
-                if(min>items[j]){
-                    min=items[j];
+                if(items[minIndex]>items[j]){
                     minIndex=j;
                 }
             }
