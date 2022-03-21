@@ -29,7 +29,7 @@ public class RecursionApp {
     public static void main(String[] args) {
         RecursionApp recursionApp = new RecursionApp();
         // 递归深度不能太深，否则会出现堆栈溢出风险
-        int f = recursionApp.f(1000);
+        int f = recursionApp.f(10);
         System.out.println(f);
     }
 }
