@@ -93,12 +93,33 @@ public class Sorts {
         }
     }
 
+    // 选择排序
+    public static void selectionSorts(int[] items){
+        int n=items.length;
+        if (n<=1)return;
+
+        for (int i = 0; i < n-1; i++) {
+            int min=items[i];
+            int minIndex=i;
+            for (int j = i+1; j <n; j++) {
+                if(min>items[j]){
+                    min=items[j];
+                    minIndex=j;
+                }
+            }
+            int tmp=items[i];
+            items[i]=items[minIndex];
+            items[minIndex]=tmp;
+        }
+    }
+
     public static void main(String[] args) {
         // 逆序度=满有序度-有序度  满有序度：n(n-1)/2
         int[] items=new int[]{4,5,6,1,2,3};
 //        Sorts.bubbleSort(items);
 //        Sorts.bubbleSort2(items);
-        Sorts.insertionSort2(items);
+//        Sorts.insertionSort2(items);
+        Sorts.selectionSorts(items);
         for (int i = 0; i < items.length; i++) {
             System.out.print(items[i]+",");
         }
