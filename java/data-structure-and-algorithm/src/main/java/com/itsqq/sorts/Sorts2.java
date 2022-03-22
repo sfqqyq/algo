@@ -77,9 +77,6 @@ public class Sorts2 {
             items[i]=items[minIndex];
             items[minIndex]=tmp;
         }
-
-
-
     }
 
 
