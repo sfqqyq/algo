@@ -115,11 +115,33 @@ public class Sorts {
 
     public static void main(String[] args) {
         // 逆序度=满有序度-有序度  满有序度：n(n-1)/2
-        int[] items=new int[]{4,5,6,1,2,3};
-//        Sorts.bubbleSort(items);
+//        int[] items=new int[]{4,5,6,1,2,3};
+        int[] items=new int[1000000];
+        for (int i = 1000000,j=0; i > 0; i--,j++) {
+            items[j]=i;
+        }
+        long l = System.currentTimeMillis();
+        Sorts.bubbleSort(items);
+        long e = System.currentTimeMillis();
+        System.out.println("冒泡需要时间："+(e-l)+"ms");
+
+        for (int i = 1000000,j=0; i > 0; i--,j++) {
+            items[j]=i;
+        }
 //        Sorts.bubbleSort2(items);
-//        Sorts.insertionSort2(items);
+        l = System.currentTimeMillis();
+        Sorts.insertionSort2(items);
+        e = System.currentTimeMillis();
+        System.out.println("插入需要时间："+(e-l)+"ms");
+
+        for (int i = 1000000,j=0; i > 0; i--,j++) {
+            items[j]=i;
+        }
+        l = System.currentTimeMillis();
         Sorts.selectionSorts(items);
+        e = System.currentTimeMillis();
+        System.out.println("插入需要时间："+(e-l)+"ms");
+
         for (int i = 0; i < items.length; i++) {
             System.out.print(items[i]+",");
         }
