@@ -39,7 +39,8 @@ public class MergeSort3 {
         mergeSortInternally(a,q+1,r);
 
         // 合并两边数组
-        merge(a,p,q,r);
+//        merge(a,p,q,r);
+        mergeBySentry(a,p,q,r);
 
     }
     /**
@@ -87,6 +88,45 @@ public class MergeSort3 {
             // a的下标从p开始，不是从0开始
             a[p+i]=tmp[i];
         }
+    }
+
+    /**
+     * @desc 合并两个数组，哨兵方式
+     * @author sfqqyq
+     * @date 2022/3/29 9:35 上午
+     * @param a 原始数组
+     * @param p 在原始数组首位的下标
+     * @param q p...r 的中间下标
+     * @param r 在原始数组的末尾下标
+     */
+    public static void mergeBySentry(int[] a,int p,int q,int r){
+        // 定义两个左右零时数组
+        int[] leftArr=new int[q-p+2];
+        int[] rightArr=new int[r-q+1];
+        // 将左边数据写入左边临时数组中
+        for (int i = 0; i < q-p+1; i++) {
+            leftArr[i]=a[p+i];
+        }
+        leftArr[q-p+1]=Integer.MAX_VALUE;
+        for (int i = 0; i < r-q; i++) {
+            rightArr[i]=a[q+1+i];
+        }
+        rightArr[r-q]=Integer.MAX_VALUE;
+
+        int i=0;
+        int j=0;
+        int k=p;
+        while (k<=r){
+            if(leftArr[i]<rightArr[j]){
+                a[k++]=leftArr[i++];
+            }else if(leftArr[i]==rightArr[j]){
+                a[k++]=leftArr[i++];
+                a[k++]=rightArr[j++];
+            }else {
+                a[k++]=rightArr[j++];
+            }
+        }
+
     }
 
     public static void main(String[] args) {
