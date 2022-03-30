@@ -11,6 +11,14 @@ public class QuickSort2 {
         quickSortInternally(a,0,n-1);
     }
 
+    /**
+     * @desc 递归快速排序
+     * @author sfqqyq
+     * @date 2022/3/30 2:40 下午
+     * @param a 数组
+     * @param p 首下标
+     * @param r 尾下标
+     */
     public static void quickSortInternally(int[] a,int p,int r){
         if(p>=r)return;
 
@@ -19,6 +27,15 @@ public class QuickSort2 {
         quickSortInternally(a,q+1,r);
     }
 
+    /**
+     * @desc 分区函数
+     * @author sfqqyq
+     * @date 2022/3/30 2:41 下午
+     * @param a 数组
+     * @param p 首下标
+     * @param r 尾下标
+     * @return int
+     */
     public static int partition(int[] a,int p,int r){
         // 首选最后一个元素为分区点
         int pivot = a[r];
