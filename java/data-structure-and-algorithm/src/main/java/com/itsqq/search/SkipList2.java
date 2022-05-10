@@ -4,6 +4,7 @@ package com.itsqq.search;
  * @desc 跳表的实现
  * @author sfqqyq
  * @date 2022-05-09 15:37:23
+ * @refer https://juejin.cn/post/6844903446475177998
  */
 public class SkipList2 {
 
