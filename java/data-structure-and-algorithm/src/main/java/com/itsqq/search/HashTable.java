@@ -31,13 +31,14 @@ public class HashTable {
     public void add(String data){
         int index = hash(data);
         String dataNode = dataArr[index];
-        if(dataNode==null){
+        if(dataNode==null || dataNode.equals(data)){
             dataArr[index] = data;
         }else {
             // 往后选址，直到选中一个为空的地址
             int i=index+1;
             while ((i)%dataArr.length!=index){
-                if( dataArr[(i)%dataArr.length]==null && !"delete".equals(dataArr[(i)%dataArr.length])){
+                // 该位置是空的，或者值相同
+                if( dataArr[(i)%dataArr.length]==null || dataArr[(i)%dataArr.length].equals(data)){
                     dataArr[(i)%dataArr.length] = data;
                     break;
                 }
@@ -50,22 +51,56 @@ public class HashTable {
         }
     }
 
+    /**
+     * @desc 删除数据(如果有相同数据，只删除第一个)
+     * @param data 需要删除的数据
+     */
+    public void del(String data){
+
+        int index = hash(data);
+        if(dataArr[index]==null){
+            log.info("该数据无法删除--->>>数据不存在--->>>数据：{}",data);
+            return;
+        }
+        if(dataArr[index].equals(data)){
+            dataArr[index]="delete";
+            return;
+        }
+
+        // TODO 查数据删除标记
+        // 往后选址，直到选中一个为空的地址
+        int i=index+1;
+        while ((i)%dataArr.length!=index){
+            // 遍历到空数据，那么就退出，查不到该数据
+            if(dataArr[(i)%dataArr.length]==null) {
+                log.info("无法删除该数据--->>>数据不存在--->>>数据：{}",data);
+                break;
+            }
+            // 遍历查询到该数据
+            if(dataArr[(i)%dataArr.length].equals(data)){
+                dataArr[(i)%dataArr.length] = "delete";
+                log.info("数据删除成功--->>>数据：{}",data);
+                break;
+            }
+            i++;
+        }
+        if((i)%dataArr.length==index){
+            log.info("无法删除该数据--->>>数据不存在--->>>数据：{}",data);
+        }
+    }
+
     public static void main(String[] args) {
         HashTable hashTable = new HashTable();
         hashTable.add("一");
         hashTable.add("😄");
-        hashTable.add("三");
-        hashTable.add("四");
         hashTable.add("你好");
         hashTable.add("我是谁？1");
         hashTable.add("我是谁？2");
-        hashTable.add("我是谁？3");
-        hashTable.add("我是谁？4");
-        hashTable.add("我是谁？5");
-        hashTable.add("我是谁？6");
-        hashTable.add("我是谁？7");
-        hashTable.add("我是谁？8");
-        hashTable.add("我是谁？9");
+        hashTable.add("我是谁？1");
+        System.out.println(hashTable.dataArr);
+        hashTable.del("你好");
+        System.out.println(hashTable.dataArr);
+        hashTable.add("你好");
         System.out.println(hashTable.dataArr);
     }
 
