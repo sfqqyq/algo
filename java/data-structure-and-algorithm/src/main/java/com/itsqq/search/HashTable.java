@@ -19,9 +19,7 @@ public class HashTable {
      * @return 数组下标值
      */
     private int hash(String data){
-        int i = data.hashCode();
-        i = i<0 ? -i : i;
-        return i % dataArr.length;
+        return Math.abs(data.hashCode()) % dataArr.length;
     }
 
     /**
